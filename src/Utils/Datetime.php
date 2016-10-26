@@ -9,7 +9,12 @@ class Datetime {
     public $amount, $type;
 
     public function __construct($value) {
-        $this->datetime = new \DateTime($value);
+        try {
+            $this->datetime = new \DateTime($value);
+        } catch (Exception $e) {
+            $this->datetime = new \DateTime();
+        }
+
     }
 
     public function __toString() {

@@ -10,8 +10,13 @@ class Currency {
 
     public function __construct($value) {
         $parts = explode(" ", $value);
-        $this->amount = (float) $parts[0];
-        $this->type = $parts[1];
+        if(sizeof($parts) == 2) {
+            $this->amount = (float) $parts[0];
+            $this->type = $parts[1];
+        } else {
+
+        }
+
     }
 
     public function __toString() {

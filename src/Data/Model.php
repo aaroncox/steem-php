@@ -4,32 +4,27 @@ namespace Greymass\SteemPHP\Data;
 
 class Model {
 
-    protected $_data;
     protected static $typeMap = [];
 
     public function __construct(Array $properties = array()) {
-        $properties = $this->setTypeMap($properties);
-        $this->_data = $properties;
+        $this->setProperties($properties);
+        if(method_exists($this, 'populate')) {
+            $this->populate();
+        }
     }
 
-    public function __set($property, $value) {
-      return $this->_data[$property] = $value;
+    public function get($key) {
+        return $this->$key;
     }
 
-    public function __get($property) {
-      return array_key_exists($property, $this->_data)
-        ? $this->_data[$property]
-        : null
-      ;
-    }
-
-    public function setTypeMap($properties) {
+    public function setProperties($properties) {
         foreach($properties as $key => $value) {
             if(array_key_exists($key, static::$typeMap)) {
-                $properties[$key] = new static::$typeMap[$key]($value);
+                $this->$key = new static::$typeMap[$key]($value);
+            } else {
+                $this->$key = $value;
             }
         }
-        return $properties;
     }
 
     public function export() {
