@@ -21,6 +21,7 @@ class DataModelTest extends \PHPUnit_Framework_TestCase
         $data = new Model();
         $data->foo = 'bar';
         $this->assertEquals('bar', $data->foo);
+        $this->assertEquals('bar', $data->get('foo'));
     }
 
     public function testExport() {

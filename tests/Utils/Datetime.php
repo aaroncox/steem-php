@@ -16,8 +16,13 @@ class DatetimeTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Greymass\SteemPHP\Utils\Datetime', $this->comment->last_update);
     }
 
-    public function testCurrencyToString() {
+    public function testDefaultDatetime() {
+        $this->assertInstanceOf('Greymass\SteemPHP\Utils\Datetime', new Utils\Datetime("invalid-time"));
+    }
+
+    public function testDatetimeToString() {
         $this->assertEquals('2016-03-30T18:30:18', (string) $this->comment->last_update);
     }
+
 
 }
