@@ -4,8 +4,23 @@
 
 ## Install in your project
 
+From within your project root, run:
 
+```
+composer require greymass/steemphp
+```
 
+or modify your `composer.json` to include:
+
+```
+{
+  "name": "your/project",
+  "minimum-stability": "dev",
+  "require": {
+    "greymass/steemphp": "dev-master"
+  }
+}
+```
 
 ## Development
 
