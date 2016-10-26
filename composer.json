@@ -1,0 +1,24 @@
+{
+    "name": "greymass/steemphp",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aaron Cox",
+            "email": "aaron.cox@greymass.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "fguillot/json-rpc": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Greymass\\SteemPHP\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
