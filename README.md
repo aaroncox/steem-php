@@ -27,6 +27,7 @@ or modify your `composer.json` to include:
 
 ```
 git clone https://github.com/greymass/steemphp.git
+cd steemphp
 composer install --dev
 ```
 
