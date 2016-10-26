@@ -2,7 +2,8 @@
 
 namespace Greymass\SteemPHP;
 
-use JsonRPC\Client;
+use JsonRPC\Client as RpcClient;
+use JsonRPC\HttpClient;
 
 class RPC {
 
@@ -16,7 +17,13 @@ class RPC {
 
     public function __construct($host = null) {
         if($host) $this->host = $host;
-        $this->client = new Client($this->host);
+        if(version_compare(PHP_VERSION, '5.6.0', '<')) {
+            $httpClient = new HttpClient($this->host);
+            $httpClient->withoutSslVerification();
+            $this->client = new RpcClient($this->host, false, $httpClient);
+        } else {
+            $this->client = new RpcClient($this->host);
+        }
     }
 
     public function getClient() {
