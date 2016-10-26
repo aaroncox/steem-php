@@ -8,13 +8,12 @@ class Datetime {
 
     public $amount, $type;
 
-    public function __construct($value) {
-        try {
-            $this->datetime = new \DateTime($value);
-        } catch (Exception $e) {
+    public function __construct($string = false) {
+        if (strtotime($string) === false) {
             $this->datetime = new \DateTime();
+        } else {
+            $this->datetime = new \DateTime($string);
         }
-
     }
 
     public function __toString() {
