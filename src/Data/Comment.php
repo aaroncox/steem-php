@@ -32,7 +32,7 @@ class Comment extends Model {
     protected function parseImages() {
         $this->image = (isset($this->json_metadata['image']))
             ? array_shift($this->json_metadata['image'])
-            : $this->getFirstImage();
+            : $this->parseFirstImage();
     }
 
     protected function parseJSON() {
@@ -67,7 +67,7 @@ class Comment extends Model {
         $this->html_preview = strip_tags(implode($elements),'<p><br>');
     }
 
-    protected function getFirstImage() {
+    protected function parseFirstImage() {
         preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $this->html, $matches);
         if($matches[1] && $matches[1][0]) {
           return $matches[1][0];
