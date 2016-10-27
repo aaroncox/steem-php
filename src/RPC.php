@@ -10,6 +10,7 @@ class RPC {
     protected $client;
     protected $host = 'https://node.steem.ws';
     protected $mapping = [
+        'get_accounts' => 'Greymass\SteemPHP\Data\Account',
         'get_block' => 'Greymass\SteemPHP\Data\Block',
         'get_content' => 'Greymass\SteemPHP\Data\Comment',
         'get_state' => 'Greymass\SteemPHP\Data\State',
@@ -32,6 +33,10 @@ class RPC {
 
     public function getConnection() {
         return $this->host;
+    }
+
+    public function get_account($accountName) {
+        return $this->get_accounts([$accountName])[0];
     }
 
     public function __call($name, $arguments) {
