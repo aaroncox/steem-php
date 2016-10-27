@@ -2,8 +2,6 @@
 
 namespace Greymass\SteemPHP\Utils;
 
-use Greymass\SteemPHP\Data;
-
 class Datetime {
 
     public $amount, $type;
