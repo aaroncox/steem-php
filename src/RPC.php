@@ -36,10 +36,27 @@ class RPC {
 
     public function __call($name, $arguments) {
         $response = $this->client->$name($arguments);
-        if(array_key_exists($name, $this->mapping)) {
-            return new $this->mapping[$name]($response);
+        if($this->is_assoc($response)) {
+            return $this->model($name, $response);
+        } else {
+            $models = array();
+            foreach($response as $idx => $data) {
+                $models[$idx] = $this->model($name, $data);
+            }
+            return $models;
         }
-        return $response;
+    }
+
+    public function model($name, $data) {
+        if(array_key_exists($name, $this->mapping)) {
+            return new $this->mapping[$name]($data);
+        }
+        return $data;
+    }
+
+    public function is_assoc(Array $array) {
+       $keys = array_keys($array);
+       return $keys !== array_keys($keys);
     }
 
 }
