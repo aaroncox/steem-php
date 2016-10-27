@@ -37,4 +37,16 @@ class Account extends Model {
         'owner' => 'Greymass\SteemPHP\Utils\Key',
     );
 
+    public function reputation() {
+        if(!is_numeric($this->reputation)) return 0;
+        $rep = "" . $this->reputation;
+        $neg = (substr($rep, 0, 1) === '-');
+        $rep = $neg ? substr($rep, 1) : $rep;
+        $out = log10($rep);
+        $out = max($out - 9, 0);
+        $out = ($neg ? -1 : 1) * $out;
+        $out = $out * 9 + 25;
+        return (int) $out;
+    }
+
 }
