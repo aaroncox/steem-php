@@ -14,6 +14,8 @@ class RPC {
         'get_block' => 'Greymass\SteemPHP\Data\Block',
         'get_content' => 'Greymass\SteemPHP\Data\Comment',
         'get_state' => 'Greymass\SteemPHP\Data\State',
+        'get_state' => 'Greymass\SteemPHP\Data\State',
+        'get_discussions_by_author_before_date' => 'Greymass\SteemPHP\Data\Comment'
     ];
 
     public function __construct($host = null) {
@@ -37,6 +39,10 @@ class RPC {
 
     public function get_account($accountName) {
         return $this->get_accounts([$accountName])[0];
+    }
+
+    public function get_posts($account, $limit, $start = "") {
+        return $this->get_discussions_by_author_before_date($account, $start, "2016-08-23T22:00:06", $limit);
     }
 
     public function __call($name, $arguments) {
