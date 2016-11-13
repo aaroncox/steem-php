@@ -41,7 +41,7 @@ class RPC {
         return $this->get_accounts([$accountName])[0];
     }
 
-    public function get_posts($account, $limit, $start = "") {
+    public function get_posts($account, $limit = 100, $start = "") {
         return $this->get_discussions_by_author_before_date($account, $start, "2016-08-23T22:00:06", $limit);
     }
 
