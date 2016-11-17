@@ -22,7 +22,6 @@ class Comment extends Model {
     );
 
     public function populate() {
-        $this->parseJSON();
         $this->parseHTML();
         $this->parsePreview();
         $this->parseImages();
@@ -33,12 +32,6 @@ class Comment extends Model {
         $this->image = (isset($this->json_metadata['image']))
             ? array_shift($this->json_metadata['image'])
             : $this->parseFirstImage();
-    }
-
-    protected function parseJSON() {
-        if(!is_array($this->json_metadata)) {
-          $this->json_metadata = json_decode($this->json_metadata, true);
-        }
     }
 
     protected function parseHTML() {
