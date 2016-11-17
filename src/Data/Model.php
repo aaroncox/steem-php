@@ -11,7 +11,15 @@ class Model {
         if(method_exists($this, 'populate')) {
             $this->populate();
         }
+        $this->parseJSON();
     }
+
+    protected function parseJSON() {
+        if($this->json_metadata && !is_array($this->json_metadata)) {
+          $this->json_metadata = json_decode($this->json_metadata, true);
+        }
+    }
+
 
     public function get($key) {
         return $this->$key;
