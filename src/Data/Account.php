@@ -49,4 +49,11 @@ class Account extends Model {
         return (int) $out;
     }
 
+    public function profileImage() {
+        if($this->json_metadata && isset($this->json_metadata['profile']) && isset($this->json_metadata['profile']['profile_image'])) {
+            return $this->json_metadata['profile']['profile_image'];
+        }
+        return null;
+    }
+
 }
