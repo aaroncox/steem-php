@@ -20,23 +20,28 @@ class DataAccountTest extends \PHPUnit_Framework_TestCase
                     'greymass' => [
                         'name' => 'greymass',
                         'reputation' => 5599807414460,
+                        'json_metadata' => '{"profile":{"profile_image":"avatar.jpg"}}',
                     ],
-                    'reputation' => 58
+                    'profileImage' => 'avatar.jpg',
+                    'reputation' => 58,
                 ],[
                     'invalid-reputation' => [
                         'name' => 'invalid-reputation',
                         'reputation' => 'invalid-reputation',
+                        'json_metadata' => '',
                     ],
-                    'reputation' => 0
+                    'profileImage' => null,
+                    'reputation' => 0,
                 ]];
     }
 
     /**
      * @dataProvider sampleProvider
      */
-    public function testReputation($data, $reputation) {
+    public function testSampleModels($data, $profileImage, $reputation) {
         $account = new Account($data);
         $this->assertEquals($reputation, $account->reputation());
+        $this->assertEquals($profileImage, $account->profileImage());
     }
 
 }
