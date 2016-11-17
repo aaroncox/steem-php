@@ -50,7 +50,7 @@ class Account extends Model {
     }
 
     public function profileImage() {
-        if($this->json_metadata && isset($this->json_metadata['profile']) && isset($this->json_metadata['profile']['profile_image'])) {
+        if(property_exists($this, 'json_metadata') && isset($this->json_metadata['profile']) && isset($this->json_metadata['profile']['profile_image'])) {
             return $this->json_metadata['profile']['profile_image'];
         }
         return null;
