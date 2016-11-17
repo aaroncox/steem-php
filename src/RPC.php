@@ -14,7 +14,6 @@ class RPC {
         'get_block' => 'Greymass\SteemPHP\Data\Block',
         'get_content' => 'Greymass\SteemPHP\Data\Comment',
         'get_state' => 'Greymass\SteemPHP\Data\State',
-        'get_state' => 'Greymass\SteemPHP\Data\State',
         'get_discussions_by_author_before_date' => 'Greymass\SteemPHP\Data\Comment'
     ];
 
