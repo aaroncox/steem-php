@@ -9,6 +9,10 @@ class Datetime {
     public function __construct($string = false) {
         if (strtotime($string) === false) {
             $this->datetime = new \DateTime();
+            // Check if this is a timestamp
+            if((is_numeric($string) && (int)$string == $string)) {
+              $this->datetime->setTimestamp($string);
+            }
         } else {
             $this->datetime = new \DateTime($string);
         }
