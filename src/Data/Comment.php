@@ -25,7 +25,11 @@ class Comment extends Model {
         $this->parseHTML();
         $this->parsePreview();
         $this->parseImages();
-        $this->ts = property_exists($this, 'created') ? strtotime($this->created) : time();
+        if(property_exists($this, 'created') && !is_int($this->created)) {
+          $this->ts = strtotime($this->created);
+        } else {
+          $this->ts = (string) $this->created;
+        }
     }
 
     protected function parseImages() {
