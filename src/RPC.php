@@ -28,11 +28,11 @@ class RPC {
         }
     }
 
-    public function getClient() {
+    public function get_client() {
         return $this->client;
     }
 
-    public function getConnection() {
+    public function get_connection() {
         return $this->host;
     }
 
